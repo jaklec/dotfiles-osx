@@ -1,0 +1,5 @@
+tags
+.vimspector.json
+node_modules
+.nvimrc
+.pg_service.conf

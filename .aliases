@@ -1,0 +1,25 @@
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias lsalias='grep "alias" ~/.aliases'
+alias grep='grep --color=auto'
+alias cat='bat --theme=ansi'
+alias mkdocs='~/.venvs/run-mkdocs.sh'
+#alias mkwiki='pushd $HOME/Documents/notes && mkdocs build && rsync -r ./site/ /opt/homebrew/var/www && popd'
+alias mkwiki='pushd $HOME/Documents/notes && npm run build && rsync -r ./build/ /opt/homebrew/var/www && popd'
+alias mkseenthis='pushd $HOME/Documents/seenthis && mkdocs build && rsync -r ./site/ /opt/homebrew/var/www/seenthis'
+alias prettierrc='printf "trailingComma: es5\ntabWidth: 2\nsemi: true\nsingleQuote: true" > .prettierrc.yml'
+alias serve='python3 -m http.server'
+
+alias vimspector="echo '{\"configurations\": {\"run\": {\"adapter\":\"<<debugpy|vscode-go|CodeLLDB|vscode-node>>\",\"breakpoints\":{\"exception\":{\"all\":\"N\",\"uncaught\":\"N\"}},\"configuration\":{\"request\":\"launch\",\"protocol\":\"auto\",\"stopOnEntry\":true,\"console\":\"integratedTerminal\",\"program\":\"<<workspaceFolder>>/<<my-runnable-file>>\",\"cwd\":\"<<workspaceFolder>>\"}}}}' | jq"
+alias timeout="gtimeout" # From coreutils on macos
+alias python="python3"
+alias initsvelte="npx degit sveltejs/template"
+alias initsveltekit="npm init svelte"
+alias initreact="npx create-react-app"
+alias initvue="npm init vue@latest"
+alias nvimeslint="printf \":lua<<EOF\n  require('eslint-formatter')\nEOF\" > .nvimrc"
+
+alias brew="arch -arm64 brew"
+
+alias nvb="XDG_CONFIG_HOME=~/.config/nvim-beginner nvim"
+alias nvb2="XDG_CONFIG_HOME=~/.config/nvim-beginner-2 nvim"
+alias lvim="XDG_CONFIG_HOME=~/.config/nvim-lua nvim"
