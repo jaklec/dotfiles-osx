@@ -6,10 +6,10 @@ local servers = {
   jsonls = {},
   pyright = {},
   rust_analyzer = {},
-  sumneko_lua = {},
+  -- sumneko_lua = {},
   tsserver = {},
-  vimls = {},
-  sqls = {}
+  vimls = {}
+  -- sqls = {}
 }
 
 local lsp_signature = require "lsp_signature"
@@ -28,6 +28,8 @@ local function on_attach(client, bufnr)
 
   -- Configure key mappings
   require("config.lsp.keymaps").setup(client, bufnr)
+
+  require("config.lsp.navbuddy").setup(client, bufnr)
 end
 
 -- local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()) -- for nvim-cmp

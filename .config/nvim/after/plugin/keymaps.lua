@@ -2,6 +2,8 @@ local keymap = vim.api.nvim_set_keymap
 local default_opts = {noremap = true, silent = true}
 local expr_opts = {noremap = true, expr = true, silent = true}
 
+-- keymap('i', '<CR>', 'pumvisible() ? "\<C-Y>" : "\<CR>"', expr_opts)
+
 -- Better escape using jk in insert and terminal mode
 keymap("i", "<c-j>", "<ESC>", default_opts)
 keymap("s", "<c-j>", "<ESC>", default_opts)
@@ -28,8 +30,8 @@ keymap("v", ">", ">gv", default_opts)
 keymap("v", "p", '"_dP', default_opts)
 
 -- Switch buffer
-keymap("n", "<S-h>", ":bprevious<CR>", default_opts)
-keymap("n", "<S-l>", ":bnext<CR>", default_opts)
+keymap("n", "<C-b>", ":bprevious<CR>", default_opts)
+keymap("n", "<C-l>", ":bnext<CR>", default_opts)
 
 -- Cancel search highlighting with ESC
 keymap("n", "<ESC>", ":nohlsearch<Bar>:echo<CR>", default_opts)

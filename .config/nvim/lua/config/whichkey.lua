@@ -13,6 +13,7 @@ function M.setup()
   local keymaps_f = nil
   local keymaps_p = nil
   local keymaps_d = nil
+  local keymaps_c = nil
   -- local keymaps_u = nil
 
   local opts = {
@@ -31,15 +32,24 @@ function M.setup()
     -- o = { "<cmd>FzfLua oldfiles<cr>", "Old files" },
     -- g = { "<cmd>FzfLua live_grep<cr>", "Live grep" },
     -- c = { "<cmd>FzfLua commands<cr>", "Commands" },
-    p = {"<cmd>Telescope find_files<cr>", "Find Files"},
-    b = {"<cmd>Telescope buffers<cr>", "Buffers"},
-    o = {"<cmd>Telescope oldfiles<cr>", "Old Files"},
-    g = {"<cmd>Telescope live_grep<cr>", "Live Grep"},
-    c = {"<cmd>Telescope commands<cr>", "Commands"},
-    r = {"<cmd>Telescope file_browser<cr>", "Browser"},
-    w = {"<cmd>Telescope current_buffer_fuzzy_find<cr>", "Current Buffer"},
-    e = {"<cmd>NvimTreeToggle<cr>", "Explorer"}
-    -- n = {'<cmd>edit <C-R>=expand("%:p:h") . "/" <CR>', "New File"}
+    p = {"<cmd>lua require('telescope.builtin').find_files()<cr>", "Find Files"},
+    b = {"<cmd>lua require('telescope.builtin').buffers()<cr>", "Buffers"},
+    o = {"<cmd>lua require('telescope.builtin').oldfiles()<cr>", "Old Files"},
+    g = {"<cmd>lua require('telescope.builtin').live_grep()<cr>", "Live Grep"},
+    G = {"<cmd>lua require('telescope.builtin').git_files()<cr>", "Git Files"},
+    c = {"<cmd>lua require('telescope.builtin').commands()<cr>", "Commands"},
+    -- r = {"<cmd>Telescope file_browser<cr>", "Browser"},
+    -- w = {"<cmd>Telescope current_buffer_fuzzy_find<cr>", "Current Buffer"},
+    e = {"<cmd>NvimTreeToggle<cr>", "Explorer"},
+    t = {"<cmd>lua require('telescope.builtin').tags()<cr>", "ctags"},
+    m = {"<cmd>lua require('telescope.builtin').marks()<cr>", "Vim Marks"},
+    S = {
+      "<cmd>lua require('telescope.builtin').spell_suggest()<cr>",
+      "Spell Suggestions"
+    },
+    n = {"<cmd>lua require('nvim-navbuddy').open()<cr>", "Code Navigation"}
+    -- N = {'<cmd>edit <C-R>=expand("%:p:h") . "/" <CR>', "New File"}
+    -- N = {'<cmd>edit <C-R>=fnamemodify(@%, "%:p:h")<cr>/<cr>', "New File"}
   }
 
   keymaps_p = {
@@ -76,6 +86,21 @@ function M.setup()
   --   name = "Utils",
   --   u = {"<cmd>i<C-R>=trim(system('uuidgen'))<CR><ESC>", "Generate UUID"}
   -- }
+  --
+  -- keymaps_a = {
+  --   name = "AI assist",
+  --   i = {"<cmd>codeium#Accept()", "Accept suggestion"},
+  --   c = {"<cmd>codeium#Complete()", "Complete suggestion"},
+  --   n = {"<cmd>codeium#Next()", "Next suggestion"},
+  --   p = {"<cmd>codeium#Previous()", "Previous suggestion"},
+  --   C = {"<cmd>codeium#Clear()", "Clear suggestion"}
+  -- }
+  keymaps_c = {
+    name = "OpenAI",
+    e = {
+      function() chatgpt.edit_with_instructions() end, "Edit with instructions"
+    }
+  }
 
   local mappings = {
     ["w"] = {"<cmd>update!<CR>", "Save"},
@@ -87,21 +112,9 @@ function M.setup()
       D = {"<Cmd>%bd|e#|bd#<Cr>", "Delete all buffers"}
     },
 
+    c = keymaps_c,
+    d = keymaps_d,
     f = keymaps_f,
-
-    p = keymaps_p,
-
-    -- u = keymaps_u,
-
-    z = {
-      name = "Packer",
-      c = {"<cmd>PackerCompile<cr>", "Compile"},
-      i = {"<cmd>PackerInstall<cr>", "Install"},
-      s = {"<cmd>PackerSync<cr>", "Sync"},
-      S = {"<cmd>PackerStatus<cr>", "Status"},
-      u = {"<cmd>PackerUpdate<cr>", "Update"}
-    },
-
     g = {
       name = "Git",
       T = {"<cmd>Neogit<CR>", "Status"},
@@ -121,7 +134,16 @@ function M.setup()
       R = {"<cmd>Gitsigns reset_buffer<cr>", "Reset Buffer"}
     },
 
-    d = keymaps_d,
+    p = keymaps_p,
+
+    z = {
+      name = "Packer",
+      c = {"<cmd>PackerCompile<cr>", "Compile"},
+      i = {"<cmd>PackerInstall<cr>", "Install"},
+      s = {"<cmd>PackerSync<cr>", "Sync"},
+      S = {"<cmd>PackerStatus<cr>", "Status"},
+      u = {"<cmd>PackerUpdate<cr>", "Update"}
+    },
 
     D = {
       name = "Database",
@@ -130,10 +152,14 @@ function M.setup()
       r = {"<Cmd>DBUIRenameBuffer<Cr>", "Rename buffer"},
       q = {"<Cmd>DBUILastQueryInfo<Cr>", "Last query info"}
     }
+
   }
+
+  local v_mappings = {c = keymaps_c}
 
   whichkey.setup(conf)
   whichkey.register(mappings, opts)
+  whichkey.register(v_mappings, {prefix = '<leader>', mode = 'x'})
 end
 
 return M

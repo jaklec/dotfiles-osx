@@ -114,12 +114,20 @@ function M.setup()
     }
 
     use {
-      "SmiteshP/nvim-gps",
+      "SmiteshP/nvim-navic",
       requires = "nvim-treesitter/nvim-treesitter",
-      module = "nvim-gps",
-      config = function() require("nvim-gps").setup() end
+      module = "nvim-navic",
+      config = function() require("nvim-navic").setup() end
     }
 
+    use {
+      "SmiteshP/nvim-navbuddy",
+      requires = {
+        "neovim/nvim-lspconfig", "SmiteshP/nvim-navic", "MunifTanjim/nui.nvim",
+        "numToStr/Comment.nvim", -- Optional
+        "nvim-telescope/telescope.nvim" -- Optional
+      }
+    }
     -- Status line
     use {
       "nvim-lualine/lualine.nvim",
@@ -198,6 +206,13 @@ function M.setup()
       wants = {"nvim-lsp-installer", "lsp_signature.nvim", "coq_nvim"}, -- for coq.nvim
       config = function() require("config.lsp").setup() end,
       requires = {"williamboman/nvim-lsp-installer", "ray-x/lsp_signature.nvim"}
+      -- dependencies = {
+      --   {
+      --     "SmiteshP/nvim-navbuddy",
+      --     dependencies = {"SmiteshP/nvim-navic", "MunifTanjim/nui.nvim"},
+      --     opts = {lsp = {auto_attach = true}}
+      --   }
+      -- }
     }
 
     -- Insights
@@ -260,18 +275,48 @@ function M.setup()
     --     "SqlsSwitchConnection"
     --   }
     -- }
-    -- use {
-    --   "tpope/vim-dadbod",
-    --   opt = true,
-    --   requires = {
-    --     "kristijanhusak/vim-dadbod-ui", "kristijanhusak/vim-dadbod-completion"
-    --   },
-    --   config = function() require("config.dadbod").setup() end,
-    --   cmd = {
-    --     "DBUIToggle", "DBUI", "DBUIAddConnection", "DBUIFindBuffer",
-    --     "DBUIRenameBuffer"
-    --   }
-    -- }
+    use {
+      "tpope/vim-dadbod",
+      opt = true,
+      requires = {
+        "kristijanhusak/vim-dadbod-ui", "kristijanhusak/vim-dadbod-completion"
+      },
+      config = function() require("config.dadbod").setup() end,
+      cmd = {
+        "DBUIToggle", "DBUI", "DBUIAddConnection", "DBUIFindBuffer",
+        "DBUIRenameBuffer"
+      }
+    }
+
+    if PLUGINS.chatgpt.enabled then
+      -- use {"0xStabby/chatgpt-vim", event = "VimEnter"}
+      use({
+        "jackMort/ChatGPT.nvim",
+        config = function()
+          require("chatgpt").setup({
+            -- optional configuration
+          })
+        end,
+        requires = {
+          "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim",
+          "nvim-telescope/telescope.nvim"
+        }
+      })
+    end
+
+    if PLUGINS.codeium.enabled then
+      use {
+        "Exafunction/codeium.vim",
+        event = "VimEnter",
+        config = function() require("config.codeium").setup() end
+      }
+    end
+
+    use {
+      "williamboman/mason.nvim",
+      config = function() require("mason").setup() end,
+      run = ":MasonUpdate" -- :MasonUpdate updates registry contents
+    }
 
     if packer_bootstrap then
       print "Restart Neovim required after installation!"

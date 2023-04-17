@@ -53,6 +53,12 @@ opt.synmaxcol = 500 -- Restric highting width for performance reasons
 opt.complete = opt.complete - "i"
 
 opt.formatoptions = opt.formatoptions + "n"
+-- Do not auto wrap or continue comments on new line
+opt.formatoptions.c = false
+opt.formatoptions.r = false
+opt.formatoptions.o = false
+
+vim.cmd([[autocmd FileType * set formatoptions-=ro]])
 
 -- No pesky backups!
 opt.backup = false
@@ -115,4 +121,8 @@ elseif executable('ag')
   set grepprg=ag\ -S\ -Q\ --nogroup\ --nocolor\ --vimgrep
   set grepformat^=%f:%l:%c:%m
 endif
+]]
+
+vim.cmd [[
+  set shell=/bin/sh
 ]]

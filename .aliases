@@ -23,3 +23,6 @@ alias brew="arch -arm64 brew"
 alias nvb="XDG_CONFIG_HOME=~/.config/nvim-beginner nvim"
 alias nvb2="XDG_CONFIG_HOME=~/.config/nvim-beginner-2 nvim"
 alias lvim="XDG_CONFIG_HOME=~/.config/nvim-lua nvim"
+
+alias branches="git branch --sort=committerdate"
+alias chat="openai repl"
