@@ -1,6 +1,13 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
+local Util = require("lazyvim.util")
+vim.keymap.set("n", "<leader>ft", function()
+  Util.float_term(nil, { cwd = Util.get_root(), border = "rounded" })
+end, { desc = "Terminal (root dir)" })
+vim.keymap.set("n", "<leader>fT", function()
+  Util.float_term(nil, { border = "rounded" })
+end, { desc = "Terminal (cwd)" })
 
 local default_opts = { noremap = true, silent = true }
 local escape_opts = { noremap = true, silent = true, desc = "<esc>" }

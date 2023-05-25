@@ -1,14 +1,21 @@
 return {
   {
     "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "stylua",
-        "shellcheck",
-        "shfmt",
-        "prettierd",
-      },
-    },
+    opts = function(_, opts)
+      table.insert(opts.ensure_installed, "stylua")
+      table.insert(opts.ensure_installed, "shellcheck")
+      table.insert(opts.ensure_installed, "shfmt")
+      table.insert(opts.ensure_installed, "prettierd")
+    end,
+
+    -- opts = {
+    --   -- ensure_installed = {
+    --   --   "stylua",
+    --   --   "shellcheck",
+    --   --   "shfmt",
+    --   --   "prettierd",
+    --   -- },
+    -- },
   },
   {
     "jay-babu/mason-nvim-dap.nvim",
@@ -29,7 +36,7 @@ return {
         -- Update this to ensure that you have the debuggers for the langs you want
         "js-debug-adapter",
         "codelldb",
-        "node-debug2-adapter",
+        -- "node-debug2-adapter",
       },
     },
   },
