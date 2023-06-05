@@ -28,3 +28,10 @@ elseif executable('ag')
   set grepformat^=%f:%l:%c:%m
 endif
 ]])
+
+-- There is a bug in LazyVim so that the `formatoptions` config is not
+-- respectecd. Solving the pesky "continue comments on new line" issue with an
+-- autocmd instead.
+vim.api.nvim_create_autocmd("Filetype", {
+  command = "set formatoptions-=cro",
+})
