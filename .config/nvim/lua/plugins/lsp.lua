@@ -48,6 +48,7 @@ return {
         volar = {},
         tailwindcss = {},
         terraformls = {},
+        cmake = {},
       },
     },
   },

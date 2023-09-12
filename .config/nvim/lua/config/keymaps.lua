@@ -61,21 +61,21 @@ vim.keymap.set(
 vim.keymap.set("n", "<leader>bo", ":%bd|e#|bd#<cr>", { noremap = true, silent = true, desc = "Close other buffers" })
 
 -- Codeium
-vim.keymap.set("i", "<c-cr>", function()
-  return vim.fn["codeium#Accept"]()
-end, { expr = true })
-vim.keymap.set("i", "<c-,>", function()
-  return vim.fn["codeium#CycleCompletions"](1)
-end, { expr = true })
-vim.keymap.set("i", "<c-;>", function()
-  return vim.fn["codeium#CycleCompletions"](-1)
-end, { expr = true })
-vim.keymap.set("i", "<c-x>", function()
-  return vim.fn["codeium#Clear"]()
-end, { expr = true })
-vim.keymap.set("i", "<C-s>", function()
-  return vim.fn["codeium#Complete"]()
-end, { expr = true })
+-- vim.keymap.set("i", "<c-cr>", function()
+--   return vim.fn["codeium#Accept"]()
+-- end, { expr = true })
+-- vim.keymap.set("i", "<c-,>", function()
+--   return vim.fn["codeium#CycleCompletions"](1)
+-- end, { expr = true })
+-- vim.keymap.set("i", "<c-;>", function()
+--   return vim.fn["codeium#CycleCompletions"](-1)
+-- end, { expr = true })
+-- vim.keymap.set("i", "<c-x>", function()
+--   return vim.fn["codeium#Clear"]()
+-- end, { expr = true })
+-- vim.keymap.set("i", "<C-s>", function()
+--   return vim.fn["codeium#Complete"]()
+-- end, { expr = true })
 
 -- OpenAI
 vim.keymap.set(
@@ -83,6 +83,13 @@ vim.keymap.set(
   "<leader>cc",
   require("chatgpt").edit_with_instructions,
   { noremap = true, silent = true, desc = "Edit with OpenAI" }
+)
+
+vim.keymap.set(
+  "n",
+  "<leader>gt",
+  ":ToggleBlameLine<cr>",
+  { noremap = true, silent = true, desc = "Toggle Git Blame at end of line" }
 )
 
 -- DAP

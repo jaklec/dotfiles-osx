@@ -9,6 +9,17 @@ return {
           completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered(),
         },
+        sources = {
+          { name = "nvim_lsp", priority = 8 },
+          { name = "buffer", priority = 7 },
+          { name = "luasnip", priority = 6 },
+          { name = "path", priority = 5 },
+        },
+        experimental = {
+          ghost_text = {
+            hl_group = "CmpGhostText",
+          },
+        },
       })
 
       opts.mapping = cmp.mapping.preset.insert({
