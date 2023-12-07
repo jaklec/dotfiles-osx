@@ -7,3 +7,5 @@ vim.cmd([[
   highlight Visual guibg=#55435b
   highlight CursorLineNr guifg=orange
 ]])
+
+-- vim.cmd("autocmd BufRead,BufNewFile *.qmd set filetype=markdown")

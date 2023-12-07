@@ -1,6 +1,7 @@
 return {
   {
     "hrsh7th/nvim-cmp",
+    dependencies = { "jmbuhr/otter.nvim" },
     opts = function(_, opts)
       local cmp = require("cmp")
 
@@ -38,6 +39,8 @@ return {
         -- Set `select` to `false` to only confirm explicitly selected items.
         ["<CR>"] = cmp.mapping.confirm({ select = true }),
       })
+
+      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "otter" } }))
     end,
   },
 }

@@ -80,10 +80,20 @@ vim.keymap.set("n", "<leader>bo", ":%bd|e#|bd#<cr>", { noremap = true, silent = 
 -- OpenAI
 vim.keymap.set(
   "n",
-  "<leader>cc",
+  "<leader>Cc",
   require("chatgpt").edit_with_instructions,
   { noremap = true, silent = true, desc = "Edit with OpenAI" }
 )
+vim.keymap.set(
+  "v",
+  "<leader>Cc",
+  require("chatgpt").edit_with_instructions,
+  { noremap = true, silent = true, desc = "Edit with OpenAI" }
+)
+-- vim.keymap.set("n", "<leader>Cc", ":GpChatNew<cr>", { noremap = true, silent = true, desc = "New Chat" })
+-- vim.keymap.set("n", "<leader>Ct", ":GpChatToggle<cr>", { noremap = true, silent = true, desc = "Toggle Popup Chat" })
+-- vim.keymap.set("n", "<leader>Cf", ":GpChatFinder<cr>", { noremap = true, silent = true, desc = "Chat Finder" })
+-- vim.keymap.set("v", "<leader>Cr", ":GpRewrite<cr>", { noremap = true, silent = true, desc = "Visual Rewrite" })
 
 vim.keymap.set(
   "n",
