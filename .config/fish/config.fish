@@ -3,7 +3,7 @@ if status is-interactive
 
     eval (/opt/homebrew/bin/brew shellenv)
     fzf_key_bindings
-    # bind ç fzf-cd-widget
+    bind ç fzf-cd-widget
 
     eval (ssh-agent -c) >/dev/null
     set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
