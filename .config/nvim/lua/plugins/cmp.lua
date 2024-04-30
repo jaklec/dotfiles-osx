@@ -1,20 +1,45 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    dependencies = { "jmbuhr/otter.nvim" },
+    dependencies = {
+      "jmbuhr/otter.nvim",
+      {
+        "zbirenbaum/copilot-cmp",
+        dependencies = "copilot.lua",
+        opts = {},
+        config = function(_, opts)
+          local copilot_cmp = require("copilot_cmp")
+          copilot_cmp.setup(opts)
+          -- attach cmp source whenever copilot attaches
+          -- fixes lazy-loading issues with the copilot cmp source
+          LazyVim.lsp.on_attach(function(client)
+            if client.name == "copilot" then
+              copilot_cmp._on_insert_enter({})
+            end
+          end)
+        end,
+      },
+    },
     opts = function(_, opts)
       local cmp = require("cmp")
 
       cmp.setup({
         window = {
-          completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered(),
+          completion = {
+            border = "rounded",
+            winhighlight = "Normal:CmpNormal",
+          },
+          documentation = {
+            border = "rounded",
+            winhighlight = "Normal:CmpDocNormal",
+          },
         },
         sources = {
-          { name = "nvim_lsp", priority = 8 },
-          { name = "buffer", priority = 7 },
-          { name = "luasnip", priority = 6 },
-          { name = "path", priority = 5 },
+          { name = "nvim_lsp", priority = 8, group_index = 2 },
+          { name = "copilot", priority = 7, group_index = 2 },
+          { name = "buffer", priority = 6, group_index = 2 },
+          { name = "luasnip", priority = 5, group_index = 2 },
+          { name = "path", priority = 4, group_index = 2 },
         },
         experimental = {
           ghost_text = {

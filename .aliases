@@ -27,3 +27,4 @@ alias lvim="XDG_CONFIG_HOME=~/.config/nvim-lua nvim"
 alias branches="git branch --sort=committerdate"
 alias chat="openai repl"
 
+alias gitprune='git branch --merged main --no-color|grep -v \'^[*] main$\'|xargs git branch -d'

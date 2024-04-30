@@ -3,10 +3,10 @@
 -- Add any additional keymaps here
 local Util = require("lazyvim.util")
 vim.keymap.set("n", "<leader>ft", function()
-  Util.float_term(nil, { cwd = Util.get_root(), border = "rounded" })
+  LazyVim.terminal.open(nil, { cwd = Util.root.get(), border = "rounded" })
 end, { desc = "Terminal (root dir)" })
 vim.keymap.set("n", "<leader>fT", function()
-  Util.float_term(nil, { border = "rounded" })
+  LazyVim.terminal.open(nil, { border = "rounded" })
 end, { desc = "Terminal (cwd)" })
 
 local default_opts = { noremap = true, silent = true }
@@ -80,21 +80,118 @@ vim.keymap.set("n", "<leader>bo", ":%bd|e#|bd#<cr>", { noremap = true, silent = 
 -- OpenAI
 vim.keymap.set(
   "n",
-  "<leader>Cc",
+  "<leader>Ce",
   require("chatgpt").edit_with_instructions,
   { noremap = true, silent = true, desc = "Edit with OpenAI" }
 )
 vim.keymap.set(
   "v",
-  "<leader>Cc",
+  "<leader>Ce",
   require("chatgpt").edit_with_instructions,
   { noremap = true, silent = true, desc = "Edit with OpenAI" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>Cd",
+  "<cmd>ChatGPTRun docstring<cr>",
+  { noremap = true, silent = true, desc = "Docstring" }
+)
+vim.keymap.set(
+  "v",
+  "<leader>Cd",
+  "<cmd>ChatGPTRun docstring<cr>",
+  { noremap = true, silent = true, desc = "Docstring" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>Ca",
+  "<cmd>ChatGPTRun add_tests<cr>",
+  { noremap = true, silent = true, desc = "Add Tests" }
+)
+vim.keymap.set(
+  "v",
+  "<leader>Ca",
+  "<cmd>ChatGPTRun add_tests<cr>",
+  { noremap = true, silent = true, desc = "Add Tests" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>Co",
+  "<cmd>ChatGPTRun optimize_code<cr>",
+  { noremap = true, silent = true, desc = "Optimize Code" }
+)
+vim.keymap.set(
+  "v",
+  "<leader>Co",
+  "<cmd>ChatGPTRun optimize_code<cr>",
+  { noremap = true, silent = true, desc = "Optimize Code" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>Cx",
+  "<cmd>ChatGPTRun explain_code<cr>",
+  { noremap = true, silent = true, desc = "Explain Code" }
+)
+vim.keymap.set(
+  "v",
+  "<leader>Cx",
+  "<cmd>ChatGPTRun explain_code<cr>",
+  { noremap = true, silent = true, desc = "Explain Code" }
+)
+vim.keymap.set("n", "<leader>Cf", "<cmd>ChatGPTRun fix_bugs<cr>", { noremap = true, silent = true, desc = "Fix Bugs" })
+vim.keymap.set("v", "<leader>Cf", "<cmd>ChatGPTRun fix_bugs<cr>", { noremap = true, silent = true, desc = "Fix Bugs" })
+vim.keymap.set(
+  "n",
+  "<leader>Cl",
+  "<cmd>ChatGPTRun code_readability_analysis<cr>",
+  { noremap = true, silent = true, desc = "Code Readability Analysis" }
+)
+vim.keymap.set(
+  "v",
+  "<leader>Cl",
+  "<cmd>ChatGPTRun code_readability_analysis<cr>",
+  { noremap = true, silent = true, desc = "Code Readability Analysis" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>Cs",
+  "<cmd>ChatGPTRun summarize<cr>",
+  { noremap = true, silent = true, desc = "Summarize" }
+)
+vim.keymap.set(
+  "v",
+  "<leader>Cs",
+  "<cmd>ChatGPTRun summarize<cr>",
+  { noremap = true, silent = true, desc = "Summarize" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>Ct",
+  "<cmd>ChatGPTRun translate<cr>",
+  { noremap = true, silent = true, desc = "Translate" }
+)
+vim.keymap.set(
+  "v",
+  "<leader>Ct",
+  "<cmd>ChatGPTRun translate<cr>",
+  { noremap = true, silent = true, desc = "Translate" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>Cg",
+  "<cmd>ChatGPTRun grammar_correction<cr>",
+  { noremap = true, silent = true, desc = "Grammar Correction" }
+)
+vim.keymap.set(
+  "v",
+  "<leader>Cg",
+  "<cmd>ChatGPTRun grammar_correction<cr>",
+  { noremap = true, silent = true, desc = "Grammar Correction" }
 )
 -- vim.keymap.set("n", "<leader>Cc", ":GpChatNew<cr>", { noremap = true, silent = true, desc = "New Chat" })
 -- vim.keymap.set("n", "<leader>Ct", ":GpChatToggle<cr>", { noremap = true, silent = true, desc = "Toggle Popup Chat" })
 -- vim.keymap.set("n", "<leader>Cf", ":GpChatFinder<cr>", { noremap = true, silent = true, desc = "Chat Finder" })
 -- vim.keymap.set("v", "<leader>Cr", ":GpRewrite<cr>", { noremap = true, silent = true, desc = "Visual Rewrite" })
-
 vim.keymap.set(
   "n",
   "<leader>gt",

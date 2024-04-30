@@ -35,3 +35,8 @@ endif
 vim.api.nvim_create_autocmd("Filetype", {
   command = "set formatoptions-=cro",
 })
+
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*" },
+  command = [[%s/\s\+$//e]],
+})

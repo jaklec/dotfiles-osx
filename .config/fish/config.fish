@@ -29,9 +29,12 @@ end
 
 fish_add_path ~/.docker/bin
 
-# bun
-set --export BUN_INSTALL "$HOME/.bun"
-set --export PATH $BUN_INSTALL/bin $PATH
+# Auto update Homebrew
+set --global --export HOMEBREW_AUTO_UPDATE_SECS 3600
 
-set --export AWS_PROFILE aws_mfa_session
+# bun
+set --global --export BUN_INSTALL "$HOME/.bun"
+set --global --export PATH $BUN_INSTALL/bin $PATH
+
+set --global --export AWS_PROFILE aws_mfa_session
 source ~/Projects/seenthis/dev-tools/awslogin/aws_session_token.fish

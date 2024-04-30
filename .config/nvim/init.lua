@@ -8,4 +8,6 @@ vim.cmd([[
   highlight CursorLineNr guifg=orange
 ]])
 
+vim.lsp.set_log_level("error")
+
 -- vim.cmd("autocmd BufRead,BufNewFile *.qmd set filetype=markdown")

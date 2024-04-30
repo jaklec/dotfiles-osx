@@ -4,3 +4,4 @@ node_modules
 .nvimrc
 .pg_service.conf
 #.terraform.lock.hcl
+venv
