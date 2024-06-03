@@ -10,15 +10,18 @@ return {
         },
         opts = {
           lsp = { auto_attach = true },
-          servers = {
-            eslint = {
-              settings = {
-                workingDirectory = {
-                  mode = "auto",
-                },
-              },
-            },
-          },
+          -- servers = {
+          --   eslint = {
+          --     settings = {
+          --       experimental = {
+          --         useFlatConfig = true,
+          --       },
+          --       -- workingDirectory = {
+          --       --   mode = "auto",
+          --       -- },
+          --     },
+          --   },
+          -- },
           setup = {
             eslint = function()
               vim.api.nvim_create_autocmd("BufWritePre", {

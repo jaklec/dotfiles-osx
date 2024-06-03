@@ -36,7 +36,7 @@ return {
         },
         sources = {
           { name = "nvim_lsp", priority = 8, group_index = 2 },
-          { name = "copilot", priority = 7, group_index = 2 },
+          { name = "copilot", priority = 100, group_index = 1 },
           { name = "buffer", priority = 6, group_index = 2 },
           { name = "luasnip", priority = 5, group_index = 2 },
           { name = "path", priority = 4, group_index = 2 },
