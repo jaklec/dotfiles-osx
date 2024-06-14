@@ -20,12 +20,15 @@ if status is-interactive
 
     set -gx VISUAL nvim
     set -gx EDITOR $VISUAL
+    set -gx VCPKG_ROOT "$HOME/vcpkg"
 
     source $HOME/.tokens.fish
     source ~/.aliases
 
     fnm env | source
 end
+
+pyenv init - | source
 
 fish_add_path ~/.docker/bin
 
