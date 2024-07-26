@@ -50,12 +50,12 @@ vim.keymap.set(
 )
 
 -- Navbuddy
-vim.keymap.set(
-  "n",
-  "<leader>cn",
-  require("nvim-navbuddy").open,
-  { noremap = true, silent = true, desc = "Code Navigation" }
-)
+-- vim.keymap.set(
+--   "n",
+--   "<leader>ce",
+--   require("nvim-navbuddy").open,
+--   { noremap = true, silent = true, desc = "Code Navigation" }
+-- )
 
 -- Close all other buffers
 vim.keymap.set("n", "<leader>bo", ":%bd|e#|bd#<cr>", { noremap = true, silent = true, desc = "Close other buffers" })
