@@ -18,6 +18,28 @@
       "git reset --hard*": "ask",
     },
   },
+  "watcher": {
+    "ignore": [
+      "node_modules/",
+      "vendor/",
+      ".venv/",
+      "__pycache__/",
+      "dist/",
+      "build/",
+      "*.min.js",
+      "*.map",
+      "*.csv",
+      "*.json",
+      "data/",
+      "fixtures/",
+      "*.generated.*",
+      "coverage/",
+      "*.png",
+      "*.jpg",
+      "*.mp4",
+      "target/",
+    ],
+  },
   "model": "openai/gpt-5.5",
   "provider": {
     "openai": {
